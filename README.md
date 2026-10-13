@@ -5,7 +5,7 @@ Minimal repro. On Android, `useAudioPlayer` sends the headers in `AudioSource.he
 
 ```ts
 const source = {
-  uri: `${SERVER_URL}/track.wav`,
+  uri: `${SERVER_URL}/track.mp3`,
   headers: { 'X-Test-Header': '1' },
 };
 
@@ -13,7 +13,7 @@ const player = useAudioPlayer(source);
 const playlist = useAudioPlaylist({ sources: [source] });
 ```
 
-`server.js` is a small Node server (no dependencies) that serves a 3 second tone
+`server.js` is a small Node server (no dependencies) that serves `assets/track.mp3` (5 seconds)
 and answers `403` unless the request has `X-Test-Header: 1`. It logs every
 request with its headers, so you can see on the server whether the header arrived.
 
@@ -53,11 +53,11 @@ log before you press anything.
 
 | Hook | Server log on Android | Button |
 | --- | --- | --- |
-| `useAudioPlayer` | one request with `x-test-header: "1"`, answered `200` | plays the tone |
+| `useAudioPlayer` | one request with `x-test-header: "1"`, answered `200` | plays the audio |
 | `useAudioPlaylist` | four requests over about 3 seconds, none with `x-test-header`, all answered `403` | silent |
 
 On iOS (`npx expo run:ios`, which uses `http://localhost:3000`) every request
-carries `x-test-header: "1"`, and both buttons play the tone.
+carries `x-test-header: "1"`, and both buttons play the audio.
 
 ## Other devices
 

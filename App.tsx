@@ -9,7 +9,7 @@ const SERVER_URL = process.env.EXPO_PUBLIC_SERVER_URL ?? `http://${DEFAULT_HOST}
 
 // Both buttons use this exact object.
 const source = {
-  uri: `${SERVER_URL}/track.wav`,
+  uri: `${SERVER_URL}/track.mp3`,
   headers: { 'X-Test-Header': '1' },
 };
 
